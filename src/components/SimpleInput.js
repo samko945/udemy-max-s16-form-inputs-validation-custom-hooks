@@ -3,9 +3,16 @@ import React, { useState } from "react";
 const SimpleInput = (props) => {
 	const [enteredName, setEnteredName] = useState("");
 	const [enteredNameIsTouched, setEnteredNameIsTouched] = useState(false);
+	// example enteredAge state
+	// enteredAgeIsTouched state
 
 	const enteredNameIsValid = enteredName.trim() !== "";
 	const enteredNameIsInvalid = !enteredNameIsValid && enteredNameIsTouched;
+
+	let formIsValid = false;
+	if (enteredNameIsValid) {
+		formIsValid = true;
+	}
 
 	const nameInputChangeHandler = (e) => {
 		const newValue = e.target.value;
@@ -18,7 +25,7 @@ const SimpleInput = (props) => {
 
 	const submitFormHandler = (e) => {
 		e.preventDefault();
-		if (!enteredNameIsValid) return;
+		if (!formIsValid) return;
 		console.log(enteredName);
 		setEnteredName("");
 		setEnteredNameIsTouched(false);
